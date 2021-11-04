@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer
 
-from some_app.event import UnKnownEvent
+from some_app.event import UnDefinedEvent
 
 
 class SomeApp:
@@ -27,4 +27,4 @@ class SomeApp:
         try:
             return self.event_classes[message.key](message)
         except KeyError:
-            return UnKnownEvent(message)
+            return UnDefinedEvent(message)

@@ -16,6 +16,6 @@ class Event(abc.ABC):
         pass
 
 
-class UnKnownEvent(Event):
+class UnDefinedEvent(Event):
     def consume(self):
-        print('UnKnownEvent!!')
+        print('UnDefinedEvent!!')
