@@ -11,8 +11,8 @@ django.setup()
 from app.shop.events import ShopCreateEvent, ShopDeleteEvent
 
 
-app = SomeApp('shop')
-app.config(
+app = SomeApp(
+    'shop',
     bootstrap_servers=['kafka:9092'],
     auto_offset_reset='earliest',
     enable_auto_commit=True,

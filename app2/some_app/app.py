@@ -4,8 +4,8 @@ from some_app.event import UnDefinedEvent
 
 
 class SomeApp:
-    def __init__(self, topic):
-        self.consumer = KafkaConsumer(topic)
+    def __init__(self, topic, **configs):
+        self.consumer = KafkaConsumer(topic, **configs)
         self.event_classes_registry = {}
         # self.event_classes_registry += self.autodiscover_event()
 
@@ -16,9 +16,6 @@ class SomeApp:
 
         for message in self.consumer:
             self.get_event(message).consume()
-
-    def config(self, **kwargs):
-        self.consumer.config.update(**kwargs)
 
     def discover_event(self, *event_classes):
         self.event_classes_registry.update({event_class.key: event_class for event_class in event_classes})
