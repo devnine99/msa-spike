@@ -4,9 +4,12 @@ from some_app.event import UnDefinedEvent
 
 
 class SomeApp:
-    def __init__(self, topic, **configs):
-        self.consumer = KafkaConsumer(topic, **configs)
-        self.event_classes_registry = {}
+    topic: str
+    configs: dict
+    event_classes_registry: dict = {}
+
+    def __init__(self, topic):
+        self.topic = topic
         # self.event_classes_registry += self.autodiscover_event()
 
     def run(self):
@@ -14,8 +17,11 @@ class SomeApp:
         for event_class in self.event_classes_registry:
             print(f'- {event_class}')
 
-        for message in self.consumer:
+        for message in KafkaConsumer(self.topic, **self.configs):
             self.get_event(message).consume()
+
+    def config(self, **configs):
+        self.configs = configs
 
     def discover_event(self, *event_classes):
         self.event_classes_registry.update({event_class.key: event_class for event_class in event_classes})
