@@ -7,10 +7,6 @@ class Event(abc.ABC):
     def __init__(self, message):
         self.message = message
 
-    @classmethod
-    def check_key(cls, key):
-        return key == cls.key
-
     @abc.abstractmethod
     def consume(self):
         pass
