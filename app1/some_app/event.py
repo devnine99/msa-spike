@@ -14,4 +14,4 @@ class Event(abc.ABC):
 
 class UnDefinedEvent(Event):
     def consume(self):
-        print('UnDefinedEvent!!')
+        print(f'UnDefinedEvent: \'{self.message.key}\'')
