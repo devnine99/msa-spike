@@ -10,7 +10,7 @@ class SomeApp:
 
     def __init__(self, topic, **configs):
         self.topic = topic
-        self.configs = configs
+        self.configs = configs or {}
         # self.event_classes_registry += self.autodiscover_event()
 
     def run(self):
@@ -22,7 +22,7 @@ class SomeApp:
             self.get_event(message).consume()
 
     def config(self, **configs):
-        self.configs = configs
+        self.configs.update(configs)
 
     def discover_event(self, *event_classes):
         for event_class in event_classes:
