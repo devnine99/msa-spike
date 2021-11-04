@@ -24,8 +24,3 @@ app.discover_event(
     ShopCreateEvent,
     ShopDeleteEvent,
 )
-
-
-# TODO: bin으로 실행
-if __name__ == '__main__':
-    app.run()
