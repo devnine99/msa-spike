@@ -26,7 +26,7 @@ class SomeApp:
     def discover_event(self, *event_classes):
         for event_class in event_classes:
             if not self.validate_class(event_class):
-                print(f'{event_class.__name__} is not Event class')
+                print(f'\'{event_class.__name__}\' is not Event class')
                 continue
             self.event_classes_registry.update({event_class.key: event_class for event_class in event_classes})
 
