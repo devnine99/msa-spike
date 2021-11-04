@@ -22,5 +22,5 @@ app2
 
 ## TODO
 [ ] some_app을 bin으로 실행 (as celery)  
-[ ] Event 클래스를 기반으로 auto generated documentation 작업(topic, key, value)
+[ ] Event 클래스를 기반으로 auto generated documentation 작업(topic, key, value)  
 [ ] multi topic 지원여부 결정
