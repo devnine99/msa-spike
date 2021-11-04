@@ -18,6 +18,7 @@ app2
 ## SomeApp 사용 방법
 - app1/config/events.py 참고 (celery를 참고하여 제작)
 - 앱단에서 Event 클래스를 상속받아 `key 설정` 및 `comsume` 메서드 구현
+- 실행: `python consumer.py`
 
 
 ## TODO
