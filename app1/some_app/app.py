@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer
 
-from some_app.event import UnDefinedEvent
+from some_app.event import Event, UnDefinedEvent
 
 
 class SomeApp:
@@ -24,7 +24,11 @@ class SomeApp:
         self.configs = configs
 
     def discover_event(self, *event_classes):
-        self.event_classes_registry.update({event_class.key: event_class for event_class in event_classes})
+        for event_class in event_classes:
+            if not self.validate_class(event_class):
+                print(f'{event_class.__name__} is not Event class')
+                continue
+            self.event_classes_registry.update({event_class.key: event_class for event_class in event_classes})
 
     # def autodiscover_event(self):
     #     # 장고앱에서 Event 클래스를 상속받은 클래스 모두 가져오도록
@@ -35,3 +39,9 @@ class SomeApp:
             return self.event_classes_registry[message.key](message)
         except KeyError:
             return UnDefinedEvent(message)
+
+    @staticmethod
+    def validate_class(event_class):
+        if Event in event_class.mro():
+            return True
+        return False
