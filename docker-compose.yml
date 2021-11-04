@@ -1,0 +1,44 @@
+version: '3'
+services:
+  app1:
+    container_name: app1
+    build:
+      context: ./app1
+      dockerfile: Dockerfile
+    command: 'python manage.py runserver'
+    volumes:
+      - db:/app/db.sqlite3
+    restart: always
+
+  app1-consumer:
+    container_name: app1-consumer
+    build:
+      context: ./app1
+      dockerfile: Dockerfile
+    command: 'python config/consumer.py'
+    volumes:
+      - db:/app/db.sqlite3
+    depends_on:
+      - kafka
+    restart: always
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - '9092:9092'
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+    restart: always
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - '2181:2181'
+
+volumes:
+  db:
