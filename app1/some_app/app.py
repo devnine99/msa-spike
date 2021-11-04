@@ -8,8 +8,9 @@ class SomeApp:
     configs: dict
     event_classes_registry: dict = {}
 
-    def __init__(self, topic):
+    def __init__(self, topic, **configs):
         self.topic = topic
+        self.configs = configs
         # self.event_classes_registry += self.autodiscover_event()
 
     def run(self):
