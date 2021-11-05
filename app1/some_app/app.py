@@ -11,7 +11,6 @@ class SomeApp:
     def __init__(self, topic, **configs):
         self.topic = topic
         self.configs = configs or {}
-        # self.event_classes_registry += self.autodiscover_event()
 
     def run(self):
         print('registered events:')
@@ -30,10 +29,6 @@ class SomeApp:
                 print(f'\'{event_class.__name__}\' is not Event class')
                 continue
             self.event_classes_registry.update({event_class.key: event_class for event_class in event_classes})
-
-    # def autodiscover_event(self):
-    #     # 장고앱에서 Event 클래스를 상속받은 클래스 모두 가져오도록
-    #     return []
 
     def get_event(self, message):
         try:
