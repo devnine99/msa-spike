@@ -3,7 +3,7 @@ import importlib.util
 
 from some_app.app import SomeApp
 
-BIN_NAME = 'someapp.py'  # TODO: bin에 등록되면 고정(someapp)
+BIN_NAME = 'some_app.py'  # TODO: bin에 등록되면 고정(someapp)
 
 
 def main():
