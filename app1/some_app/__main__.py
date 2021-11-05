@@ -7,7 +7,15 @@ BIN_NAME = 'some_app.py'  # TODO: bin에 등록되면 고정(some_app)
 
 
 def main():
-    app = 'config.events'  # TODO: command 입력 받도록 ex) some_app -A config.events
+    args = sys.argv[1:]
+    # TODO: CommandParser(args)
+    try:
+        app_index = args.index('-A')
+        app = args[app_index+1]
+    except (ValueError, IndexError):
+        print('앱이 지정되지 않았습니다.')
+        return
+
     module_name = 'some_app'
     module_path = sys.argv[0].replace(BIN_NAME, f'{app.replace(".", "/")}.py')
 
