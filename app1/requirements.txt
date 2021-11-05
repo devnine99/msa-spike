@@ -1,4 +1,5 @@
 asgiref==3.4.1
+consumer-framework==0.0.17
 Django==3.2.9
 djangorestframework==3.12.4
 kafka-python==2.0.2

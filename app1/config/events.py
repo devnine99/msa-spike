@@ -3,7 +3,7 @@ import os
 
 import django
 
-from some_app.app import SomeApp
+from consumer_framework.app import ConsumerFramework
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
@@ -11,7 +11,7 @@ django.setup()
 from app.shop.events import ShopCreateEvent, ShopDeleteEvent
 
 
-app = SomeApp('shop')
+app = ConsumerFramework('shop')
 app.config(
     bootstrap_servers=['localhost:9092'],
     auto_offset_reset='earliest',

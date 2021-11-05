@@ -1,5 +1,6 @@
+from consumer_framework.event import Event
+
 from app.shop.models import Shop
-from some_app.event import Event
 
 
 class ShopCreateEvent(Event):
