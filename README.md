@@ -27,3 +27,4 @@ app2
 - [ ] Event 클래스를 기반으로 auto generated documentation 작업(topic, key, schema)
 - [X] multi topic 지원여부 결정(지원)
 - [X] some_app naming: consumer-framework
+- [ ] 다양한 메시지큐 지원 (RabbitMQ)
