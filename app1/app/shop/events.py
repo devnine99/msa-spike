@@ -1,21 +1,10 @@
-from consumer_framework.event import Event
+from consumer_framework.routers import Router
 
-from app.shop.models import Shop
-
-
-class ShopCreateEvent(Event):
-    key = 'shop_create'
-
-    def consume(self):
-        print(self.message.key)
-        print(self.message.value)
-        # Shop.objects.create(**value)
+shop_router = Router()
 
 
-class ShopDeleteEvent(Event):
-    key = 'shop_delete'
-
-    def consume(self):
-        print(self.message.key)
-        print(self.message.value)
-        # Shop.objects.filter(id=value['id']).delete()
+@shop_router.event(topic='shop', key='shop_create')
+def test(message):
+    print(message.topic)
+    print(message.key)
+    print(message.value)
